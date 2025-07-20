@@ -6,6 +6,7 @@ services:
             - "8001:8000"
         volumes:
             - .:/var/www/html
+            - vendor:/var/www/html/vendor
         depends_on:
             - mysql
         env_file:
@@ -25,3 +26,4 @@ services:
 
 volumes:
     db-data:
+    vendor:
