@@ -42,9 +42,9 @@ A simple Laravel-based RESTful API for managing notes. Built with Docker and Mak
 - `POST /register` – Register new user
 - `POST /login` – Login and receive bearer token
 
-### Notes
+### Notes (**auth required**)
 
-- `GET /notes` – List all notes (**auth required**)
+- `GET /notes` – List all notes
 - `POST /notes` – Create a new note
 - `GET /notes/{id}` – Get a single note
 - `PUT /notes/{id}` – Update a note
