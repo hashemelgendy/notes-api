@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ApiResponse;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 
 abstract class ApiController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Success Response
      *
