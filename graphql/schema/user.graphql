@@ -1,0 +1,11 @@
+type User {
+    id: ID!
+    username: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+extend type Query {
+    user(id: ID, username: String): User @find
+    users(username: String): [User!]! @paginate(defaultCount: 10)
+}

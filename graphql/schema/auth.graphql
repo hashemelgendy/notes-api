@@ -1,0 +1,12 @@
+extend type Mutation {
+    register(
+        username: String!
+        password: String!
+        password_confirmation: String!
+    ): User
+    @validator(class: "App\\GraphQL\\Validators\\RegisterValidator")
+    @field(resolver: "App\\GraphQL\\Mutations\\AuthMutation@register")
+
+    login(username: String!, password: String!): String!
+    @field(resolver: "App\\GraphQL\\Mutations\\AuthMutation@login")
+}

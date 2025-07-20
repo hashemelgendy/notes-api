@@ -1,0 +1,31 @@
+type Note {
+    id: ID!
+    title: String!
+    body: String!
+    user: User! @belongsTo
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+extend type Query {
+    myNotes: [Note!]! @guard @field(resolver: "App\\GraphQL\\Queries\\NoteQuery@getMyNotes")
+    notes: [Note!]! @all
+    note(id: ID!): Note @find
+}
+
+extend type Mutation {
+    createNote(title: String!, body: String!): Note
+    @guard
+    @inject(context: "user.id", name: "user_id")
+    @create
+
+    updateNote(id: ID!, title: String, body: String): Note
+    @guard
+    @can(ability: "update", find: "id")
+    @field(resolver: "App\\GraphQL\\Mutations\\NoteMutation@update")
+
+    deleteNote(id: ID!): Note
+    @guard
+    @can(ability: "delete", find: "id")
+    @field(resolver: "App\\GraphQL\\Mutations\\NoteMutation@delete")
+}
