@@ -73,7 +73,7 @@ return [
     |
     */
 
-    'schema_path' => base_path('graphql/schema'),
+    'schema_path' => base_path('graphql/schema.graphql'),
 
     /*
     |--------------------------------------------------------------------------
