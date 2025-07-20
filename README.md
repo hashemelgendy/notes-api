@@ -7,10 +7,10 @@ A simple Laravel-based RESTful API for managing notes. Built with Docker and Mak
 ## 🚀 Quick Start
 
 1. Clone the repo
-2. Run:
+2. Run (First time only):
 
     ```bash
-    make up
+    make setup
     ```
 
    This will:
