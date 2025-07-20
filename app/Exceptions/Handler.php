@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Closure;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler
@@ -14,18 +15,28 @@ class Handler
             $previous = $e->getPrevious();
 
             if ($previous instanceof ModelNotFoundException) {
-                $model = class_basename($previous->getModel());
-
-                return response()->json([
-                    'status' => 'error',
-                    'message' => "$model does not exist",
-                ], 404);
+                return self::handleModelNotFound($previous);
             }
 
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Route not found: ' . $request->path(),
-            ], 404);
+            return self::handleRouteNotFound($e, $request);
         };
+    }
+
+    private static function handleModelNotFound(ModelNotFoundException $e): JsonResponse
+    {
+        $model = class_basename($e->getModel());
+
+        return response()->json([
+            'status' => 'error',
+            'message' => "$model not found",
+        ], 404);
+    }
+
+    private static function handleRouteNotFound(NotFoundHttpException $e, $request): JsonResponse
+    {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Route not found: ' . $request->path(),
+        ], 404);
     }
 }
