@@ -25,11 +25,13 @@ A simple Laravel-based RESTful API for managing notes. Built with Docker and Mak
 
 ## 🛠 Makefile Commands
 
-| Command      | Description                                      |
-|--------------|--------------------------------------------------|
-| `make up`    | Build/start containers, setup Laravel project    |
-| `make down`  | Stop containers and network                      |
-| `make fresh` | Reset DB and reseed (`migrate:fresh --seed`)     |
+| Command       | Description                                     |
+|---------------|-------------------------------------------------|
+| `make setup`  | Build/start containers, Initial Setup           |
+| `make up`     | Start up the project                            |
+| `make down`   | Stop containers and network                     |
+| `make remove` | Stop and delete containers, volumes and network |
+| `make fresh`  | Reset DB and reseed (`migrate:fresh --seed`)    |
 
 ---
 
@@ -42,13 +44,21 @@ A simple Laravel-based RESTful API for managing notes. Built with Docker and Mak
 - `POST /register` – Register new user
 - `POST /login` – Login and receive bearer token
 
-### Notes (**auth required**)
+### Notes REST (**auth required**)
 
 - `GET /notes` – List all notes
 - `POST /notes` – Create a new note
 - `GET /notes/{id}` – Get a single note
 - `PUT /notes/{id}` – Update a note
 - `DELETE /notes/{id}` – Delete a note
+
+### Notes GraphQL (**auth required**)
+
+- `myNotes` – List authenticated user notes
+- `note` – fetch single note
+- `createNote` – Create a new note
+- `updateNote` – Update a note
+- `deleteNote` – Delete a note
 
 ### Auth Header
 
