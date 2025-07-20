@@ -48,7 +48,7 @@ class NoteController extends ApiController
      */
     public function update(UpdateNoteRequest $request, Note $note): JsonResponse
     {
-        $this->authorize('update', $note);
+        $this->authorize($note);
 
         $note->update($request->validated());
 
@@ -65,7 +65,7 @@ class NoteController extends ApiController
      */
     public function destroy(Request $request, Note $note): JsonResponse
     {
-        $this->authorize('delete', $note);
+        $this->authorize($note);
 
         $note->delete();
 
