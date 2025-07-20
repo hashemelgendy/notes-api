@@ -25,7 +25,7 @@ class AuthController extends ApiController
             'password' => Hash::make($data['password']),
         ]);
 
-        $token = $user->createToken('api')->plainTextToken;
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return $this->success(['token' => $token], 201);
     }
