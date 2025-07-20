@@ -3,6 +3,7 @@ type User {
     username: String!
     created_at: DateTime!
     updated_at: DateTime!
+    notes: [Note!]! @hasMany
 }
 
 extend type Query {

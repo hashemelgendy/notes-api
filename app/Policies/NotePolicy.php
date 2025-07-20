@@ -21,7 +21,7 @@ class NotePolicy
      */
     public function view(User $user, Note $note): bool
     {
-        return false;
+        return $user->id === $note->user_id;
     }
 
     /**
