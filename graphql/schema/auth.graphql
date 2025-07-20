@@ -1,12 +1,17 @@
+type AuthPayload {
+    user: User!
+    token: String!
+}
+
 extend type Mutation {
     register(
         username: String!
         password: String!
         password_confirmation: String!
-    ): User
+    ): AuthPayload
     @validator(class: "App\\GraphQL\\Validators\\RegisterValidator")
     @field(resolver: "App\\GraphQL\\Mutations\\AuthMutation@register")
 
-    login(username: String!, password: String!): String!
+    login(username: String!, password: String!): AuthPayload!
     @field(resolver: "App\\GraphQL\\Mutations\\AuthMutation@login")
 }

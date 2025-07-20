@@ -22,18 +22,14 @@ class AuthController extends ApiController
     {
         $data = $request->validated();
 
-        $token = $this->authService->register($data['username'], $data['password']);
-
-        return $this->success(['token' => $token], 201);
+        return $this->success($this->authService->register($data['username'], $data['password']), 201);
     }
 
     public function login(LoginRequest $request): JsonResponse
     {
         $data = $request->validated();
 
-        $token = $this->authService->login($data['username'], $data['username']);
-
-        return $this->success(['token' => $token]);
+        return $this->success($this->authService->login($data['username'], $data['password']), 201);
     }
 
     /**
