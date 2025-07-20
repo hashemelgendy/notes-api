@@ -39,12 +39,14 @@ A simple Laravel-based RESTful API for managing notes. Built with Docker and Mak
 
 **Base URL:** `http://localhost:8001/api`
 
+## REST
+
 ### Auth
 
 - `POST /register` – Register new user
 - `POST /login` – Login and receive bearer token
-
-### Notes REST (**auth required**)
+- 
+### Notes REST (**Auth required**)
 
 - `GET /notes` – List all notes
 - `POST /notes` – Create a new note
@@ -52,7 +54,15 @@ A simple Laravel-based RESTful API for managing notes. Built with Docker and Mak
 - `PUT /notes/{id}` – Update a note
 - `DELETE /notes/{id}` – Delete a note
 
-### Notes GraphQL (**auth required**)
+
+## GraphQL
+
+### Auth
+
+- `register` – Register new user
+- `login` – Login and receive bearer token
+
+### Notes (**Auth required**)
 
 - `myNotes` – List authenticated user notes
 - `note` – fetch single note
