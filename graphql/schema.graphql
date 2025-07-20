@@ -1,0 +1,104 @@
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+"Indicates what fields are available at the top level of a query operation."
+type Query {
+    "Find a single user by an identifying attribute."
+    user(
+      "Search by primary key."
+      id: ID @eq @rules(apply: ["prohibits:email", "required_without:email"])
+
+      "Search by email address."
+      username: String @eq @rules(apply: ["prohibits:id", "required_without:id", "username"])
+    ): User @find
+
+    "List multiple users."
+    users(
+      "Filters by name. Accepts SQL LIKE wildcards `%` and `_`."
+      username: String @where(operator: "like")
+    ): [User!]! @paginate(defaultCount: 10)
+}
+
+"Account of a person who uses this application."
+type User {
+    "Unique primary key."
+    id: ID!
+
+    "Unique Username"
+    username: String!
+
+    "When the account was created."
+    created_at: DateTime!
+
+    "When the account was last updated."
+    updated_at: DateTime!
+}
+
+
+"Note created by a user."
+type Note {
+    "Primary ID"
+    id: ID!
+
+    "Title of the note"
+    title: String!
+
+    "Body content"
+    body: String!
+
+    "Author of the note"
+    user: User! @belongsTo
+
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+extend type Query {
+    "Get all notes for authenticated user"
+    myNotes: [Note!]! @guard @field(resolver: "App\\GraphQL\\Queries\\NoteQuery@getMyNotes")
+
+    "Get all notes"
+    notes: [Note!]! @all
+
+    "Get a single note by ID"
+    note(id: ID!): Note @find
+}
+
+extend type Mutation {
+    "Create a new note"
+    createNote(
+        title: String!
+        body: String!
+    ): Note @guard @inject(context: "user.id", name: "user_id") @create
+
+    "Update a note"
+    updateNote(
+        id: ID!
+        title: String
+        body: String
+    ): Note
+    @guard
+    @can(ability: "update", find: "id")
+    @field(resolver: "App\\GraphQL\\Mutations\\NoteMutation@update")
+
+    "Delete a note"
+    deleteNote(id: ID!): Note
+    @guard
+    @can(ability: "delete", find: "id")
+    @field(resolver: "App\\GraphQL\\Mutations\\NoteMutation@delete")
+}
+
+extend type Mutation {
+    register(
+        username: String!
+        password: String!
+        password_confirmation: String!
+    ): User
+    @validator(class: "App\\GraphQL\\Validators\\RegisterValidator")
+    @field(resolver: "App\\GraphQL\\Mutations\\AuthMutation@register")
+
+    login(
+        username: String!
+        password: String!
+    ): String! @field(resolver: "App\\GraphQL\\Mutations\\AuthMutation@login")
+}
