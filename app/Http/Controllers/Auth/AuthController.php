@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\ApiController;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
-use App\Models\User;
+use App\Services\AuthService;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\JsonResponse;
 
 class AuthController extends ApiController
 {
+    public function __construct(protected AuthService $authService) {}
     /**
      * Register
      *
@@ -20,32 +21,17 @@ class AuthController extends ApiController
     public function register(RegisterRequest $request): JsonResponse
     {
         $data = $request->validated();
-        $user = User::create([
-            'username' => $data['username'],
-            'password' => Hash::make($data['password']),
-        ]);
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $token = $this->authService->register($data['username'], $data['password']);
 
         return $this->success(['token' => $token], 201);
     }
 
-    /**
-     * Login
-     *
-     * @param LoginRequest $request
-     * @return JsonResponse
-     */
     public function login(LoginRequest $request): JsonResponse
     {
         $data = $request->validated();
-        $user = User::where('username', $data['username'])->first();
 
-        if (! $user || ! Hash::check($data['password'], $user->password)) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
-        }
-
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $token = $this->authService->login($data['username'], $data['username']);
 
         return $this->success(['token' => $token]);
     }
