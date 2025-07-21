@@ -3,22 +3,30 @@
 namespace App\Exceptions;
 
 use Closure;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Throwable;
+use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class Handler
 {
-    public static function notFound(): Closure
+    public static function render(): Closure
     {
-        return function (NotFoundHttpException $e, $request) {
-            $previous = $e->getPrevious();
+        return function (Throwable $e, Request $request): JsonResponse|null {
+            $previous = method_exists($e, 'getPrevious') ? $e->getPrevious() : null;
 
-            if ($previous instanceof ModelNotFoundException) {
-                return self::handleModelNotFound($previous);
-            }
-
-            return self::handleRouteNotFound($e, $request);
+            return match (true) {
+                $previous instanceof ModelNotFoundException => self::handleModelNotFound($previous),
+                $e instanceof NotFoundHttpException         => self::handleRouteNotFound($e, $request),
+                $e instanceof AuthenticationException       => self::handleUnauthenticated($e),
+                $e instanceof AuthorizationException,
+                    $e instanceof AccessDeniedHttpException => self::handleForbidden($e),
+                default                                     => null,
+            };
         };
     }
 
@@ -32,11 +40,27 @@ class Handler
         ], 404);
     }
 
-    private static function handleRouteNotFound(NotFoundHttpException $e, $request): JsonResponse
+    private static function handleRouteNotFound(NotFoundHttpException $e, Request $request): JsonResponse
     {
         return response()->json([
             'status' => 'error',
             'message' => 'Route not found: ' . $request->path(),
         ], 404);
+    }
+
+    private static function handleUnauthenticated(AuthenticationException $e): JsonResponse
+    {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Unauthenticated',
+        ], 401);
+    }
+
+    private static function handleForbidden(AuthorizationException|AccessDeniedHttpException $e): JsonResponse
+    {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'You do not have permission to access this resource',
+        ], 403);
     }
 }
