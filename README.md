@@ -37,7 +37,8 @@ A simple Laravel-based RESTful API for managing notes. Built with Docker and Mak
 
 ## API Endpoints
 
-**Base URL:** `http://localhost:8001/api`
+**Base URL:** `http://localhost:8001/api`  
+**GraphQL URL:** `http://localhost:8001/graphql`
 
 ## REST
 
