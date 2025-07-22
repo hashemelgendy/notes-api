@@ -6,17 +6,14 @@ use App\Http\Controllers\ApiController;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Services\AuthService;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\JsonResponse;
 
 class AuthController extends ApiController
 {
     public function __construct(protected AuthService $authService) {}
+
     /**
      * Register
-     *
-     * @param RegisterRequest $request
-     * @return JsonResponse
      */
     public function register(RegisterRequest $request): JsonResponse
     {
@@ -34,8 +31,6 @@ class AuthController extends ApiController
 
     /**
      * Logout
-     *
-     * @return JsonResponse
      */
     public function logout(): JsonResponse
     {

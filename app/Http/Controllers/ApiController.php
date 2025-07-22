@@ -10,12 +10,9 @@ use Illuminate\Routing\Controller;
 abstract class ApiController extends Controller
 {
     use AuthorizesRequests;
+
     /**
      * Success Response
-     *
-     * @param array $data
-     * @param int $status
-     * @return JsonResponse
      */
     protected function success(array $data = [], int $status = 200): JsonResponse
     {
@@ -24,10 +21,6 @@ abstract class ApiController extends Controller
 
     /**
      * Error Response
-     *
-     * @param string $message
-     * @param int $status
-     * @return JsonResponse
      */
     protected function error(string $message, int $status = 400): JsonResponse
     {

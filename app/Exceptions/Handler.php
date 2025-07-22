@@ -3,29 +3,29 @@
 namespace App\Exceptions;
 
 use Closure;
-use Throwable;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Throwable;
 
 class Handler
 {
     public static function render(): Closure
     {
-        return function (Throwable $e, Request $request): JsonResponse|null {
+        return function (Throwable $e, Request $request): ?JsonResponse {
             $previous = method_exists($e, 'getPrevious') ? $e->getPrevious() : null;
 
             return match (true) {
                 $previous instanceof ModelNotFoundException => self::handleModelNotFound($previous),
-                $e instanceof NotFoundHttpException         => self::handleRouteNotFound($e, $request),
-                $e instanceof AuthenticationException       => self::handleUnauthenticated($e),
+                $e instanceof NotFoundHttpException => self::handleRouteNotFound($e, $request),
+                $e instanceof AuthenticationException => self::handleUnauthenticated($e),
                 $e instanceof AuthorizationException,
-                    $e instanceof AccessDeniedHttpException => self::handleForbidden($e),
-                default                                     => null,
+                $e instanceof AccessDeniedHttpException => self::handleForbidden($e),
+                default => null,
             };
         };
     }
@@ -44,7 +44,7 @@ class Handler
     {
         return response()->json([
             'status' => 'error',
-            'message' => 'Route not found: ' . $request->path(),
+            'message' => 'Route not found: '.$request->path(),
         ], 404);
     }
 

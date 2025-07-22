@@ -9,10 +9,6 @@ class NoteMutation
 {
     /**
      * Update Note
-     *
-     * @param $_
-     * @param array $args
-     * @return Note
      */
     public function update($_, array $args): Note
     {
@@ -21,15 +17,12 @@ class NoteMutation
             ->firstOrFail();
 
         $note->update($args);
+
         return $note;
     }
 
     /**
      * Delete Note
-     *
-     * @param $_
-     * @param array $args
-     * @return Note
      */
     public function delete($_, array $args): Note
     {
@@ -38,6 +31,7 @@ class NoteMutation
             ->firstOrFail();
 
         $note->delete();
+
         return $note;
     }
 }

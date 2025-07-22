@@ -15,11 +15,9 @@ class NoteController extends ApiController
     {
         $this->authorizeResource(Note::class);
     }
+
     /**
      * List Notes
-     *
-     * @param Request $request
-     * @return JsonResponse
      */
     public function index(Request $request): JsonResponse
     {
@@ -35,9 +33,6 @@ class NoteController extends ApiController
 
     /**
      * Store Note
-     *
-     * @param StoreNoteRequest $request
-     * @return JsonResponse
      */
     public function store(StoreNoteRequest $request): JsonResponse
     {
@@ -50,9 +45,6 @@ class NoteController extends ApiController
     /**
      * Update Note
      *
-     * @param UpdateNoteRequest $request
-     * @param Note $note
-     * @return JsonResponse
      * @throws AuthorizationException
      */
     public function update(UpdateNoteRequest $request, Note $note): JsonResponse
@@ -65,9 +57,6 @@ class NoteController extends ApiController
     /**
      * Destroy Note
      *
-     * @param Request $request
-     * @param Note $note
-     * @return JsonResponse
      * @throws AuthorizationException
      */
     public function destroy(Request $request, Note $note): JsonResponse

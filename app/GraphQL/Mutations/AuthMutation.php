@@ -2,11 +2,7 @@
 
 namespace App\GraphQL\Mutations;
 
-use App\Models\User;
 use App\Services\AuthService;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 
 class AuthMutation
 {
