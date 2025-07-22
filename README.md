@@ -1,8 +1,11 @@
 # Notes API
 
-A simple Laravel-based RESTful API for managing notes. Built with Docker and Make for easy setup and local development.
+A simple Laravel-based RESTful & GraphQL APIs for managing notes. Built with Docker and Make for easy setup and local development.
 
 ---
+## 📦 Requirements
+- [Docker](https://www.docker.com/) installed and running  
+- [GNU Make](https://www.gnu.org/software/make/) (for Makefile commands)
 
 ## 🚀 Quick Start
 
