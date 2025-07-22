@@ -36,47 +36,8 @@ A simple Laravel-based RESTful API for managing notes. Built with Docker and Mak
 | `make remove` | Stop and delete containers, volumes and network |
 | `make fresh`  | Reset DB and reseed (`migrate:fresh --seed`)    |
 
----
+## 📫 API Collection
 
-## API Endpoints
+You can import this collection into **any API client** such as [Postman](https://www.postman.com/) or [Insomnia](https://insomnia.rest/) to explore and test all endpoints easily.
 
-**Base URL:** `http://localhost:8001/api`  
-**GraphQL URL:** `http://localhost:8001/graphql`
-
-## REST
-
-### Auth
-
-- `POST /register` – Register new user
-- `POST /login` – Login and receive bearer token
-- 
-### Notes REST (**Auth required**)
-
-- `GET /notes` – List all notes
-- `POST /notes` – Create a new note
-- `GET /notes/{id}` – Get a single note
-- `PUT /notes/{id}` – Update a note
-- `DELETE /notes/{id}` – Delete a note
-
-
-## GraphQL
-
-### Auth
-
-- `register` – Register new user
-- `login` – Login and receive bearer token
-
-### Notes (**Auth required**)
-
-- `myNotes` – List authenticated user notes
-- `note` – fetch single note
-- `createNote` – Create a new note
-- `updateNote` – Update a note
-- `deleteNote` – Delete a note
-
-### Auth Header
-
-Use the following header for protected routes:
-
-```http
-Authorization: Bearer <token>
+🔗 [Download Notes API Collection](./docs/Notes-API.json)
