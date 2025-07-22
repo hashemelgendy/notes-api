@@ -1,0 +1,685 @@
+type: collection.insomnia.rest/5.0
+name: Notes
+meta:
+  id: wrk_6abc1de9d4b043f28115953279183dc1
+  created: 1753016075388
+  modified: 1753016075388
+  description: ""
+collection:
+  - name: GraphQL
+    meta:
+      id: fld_ac2a1775b81c4f9fab34dd1cf34b6ce8
+      created: 1753030234319
+      modified: 1753030237341
+      sortKey: -1753030234319
+      description: ""
+    children:
+      - name: Auth
+        meta:
+          id: fld_5d6075e197604b49b5a3064d6eee42de
+          created: 1753181445395
+          modified: 1753181795507
+          sortKey: -1753181791097
+          description: ""
+        children:
+          - url: "{{graphql_url}}"
+            name: Register
+            meta:
+              id: req_044aaa5286d94da6a55ab84e796eded2
+              created: 1753039471565
+              modified: 1753181452584
+              isPrivate: false
+              description: ""
+              sortKey: -1753181450196
+            method: POST
+            body:
+              mimeType: application/graphql
+              text: '{"query":"mutation {\n\tregister (\n\t\tusername:
+                \"hashem7\",\n\t\tpassword:
+                \"12345678\",\n\t\tpassword_confirmation:
+                \"12345678\"\n\t)\n\t{\n\t\ttoken\n\t\tuser
+                {\n\t\t\tid\n\t\t\tusername\n\t\t\tcreated_at\n\t\t}\n\t}\n}"}'
+            headers:
+              - name: User-Agent
+                value: insomnia/11.3.0
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{user_token}}"
+              disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{graphql_url}}"
+            name: Login
+            meta:
+              id: req_e2d3e1a45db2481eb659ef4d0b5cd78d
+              created: 1753039477693
+              modified: 1753181451134
+              isPrivate: false
+              description: ""
+              sortKey: -1753181450096
+            method: POST
+            body:
+              mimeType: application/graphql
+              text: '{"query":"mutation {\n\tlogin(\n\t\tusername: \"hashem\",\n\t\tpassword:
+                \"12345678\"\n\t)\n\t{\n\t\ttoken\n\t\tuser
+                {\n\t\t\tid\n\t\t\tusername\n\t\t}\n\t}\n}"}'
+            headers:
+              - name: User-Agent
+                value: insomnia/11.3.0
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{user_token}}"
+              disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Notes
+        meta:
+          id: fld_5a55cba499b84e6fbfb5cda1029350e8
+          created: 1753181462778
+          modified: 1753181462778
+          sortKey: -1753181462778
+          description: ""
+        children:
+          - url: "{{graphql_url}}"
+            name: List My Notes
+            meta:
+              id: req_3ab382c052ce4744a0f28e6f5615d772
+              created: 1753029137985
+              modified: 1753184947620
+              isPrivate: false
+              description: ""
+              sortKey: -1753181466516
+            method: POST
+            body:
+              mimeType: application/graphql
+              text: '{"query":"{\n  myNotes {\n    id\n    title\n    body\n\t\tuser
+                {\n\t\t\tid\n\t\t\tusername\n\t\t\tcreated_at\n\t\t\tupdated_at\n\t\t}\n  }\n}"}'
+            headers:
+              - name: User-Agent
+                value: insomnia/11.3.0
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{user_token}}"
+              disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{graphql_url}}"
+            name: Create Note
+            meta:
+              id: req_966bb75b22e04089a75916da892bcf75
+              created: 1753030266991
+              modified: 1753184976111
+              isPrivate: false
+              description: ""
+              sortKey: -1753181466353.5
+            method: POST
+            body:
+              mimeType: application/graphql
+              text: '{"query":"mutation {\n  createNote(title: \"GraphQL Note\", body:
+                \"GraphQL Body\")
+                {\n    id\n    title\n    body\n    created_at\n    updated_at\n    user
+                {\n      id\n      username\n      created_at\n      updated_at\n    }\n  }\n}"}'
+            headers:
+              - name: User-Agent
+                value: insomnia/11.3.0
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{user_token}}"
+              disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{graphql_url}}"
+            name: Update Note
+            meta:
+              id: req_465b48e26f8440fa8cf09b274e742a6b
+              created: 1753030541093
+              modified: 1753185020103
+              isPrivate: false
+              description: ""
+              sortKey: -1753181466341
+            method: POST
+            body:
+              mimeType: application/graphql
+              text: '{"query":"mutation {\n  updateNote(\n\t\tid: 1,\n\t\ttitle: \"GraphQL
+                Note\",\n\t\tbody: \"GraphQL Body\"\n\t)
+                \n\t{\n    id\n    title\n    body\n    created_at\n    updated_at\n    user
+                {\n      id\n      username\n      created_at\n      updated_at\n    }\n  }\n}"}'
+            headers:
+              - name: User-Agent
+                value: insomnia/11.3.0
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{user_token}}"
+              disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{graphql_url}}"
+            name: Delete Note
+            meta:
+              id: req_daedd4305c60428e96e94dcbfee420d4
+              created: 1753030577219
+              modified: 1753185025959
+              isPrivate: false
+              description: ""
+              sortKey: -1753181466316
+            method: POST
+            body:
+              mimeType: application/graphql
+              text: '{"query":"mutation {\n  deleteNote(id: 1) {\n    id\n  }\n}"}'
+            headers:
+              - name: User-Agent
+                value: insomnia/11.3.0
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{user_token}}"
+              disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{graphql_url}}"
+            name: View Note
+            meta:
+              id: req_906807282e724868b4d2ccfb982a1cfe
+              created: 1753038679941
+              modified: 1753184957305
+              isPrivate: false
+              description: ""
+              sortKey: -1753181466416
+            method: POST
+            body:
+              mimeType: application/graphql
+              text: '{"query":"{\n  note(id: 1)
+                {\n    id\n\t\ttitle\n\t\tbody\n\t\tcreated_at\n\t\tuser
+                {\n\t\t\tid\n\t\t\tusername\n\t\t\tcreated_at\n\t\t\tupdated_at\n\t\t}\n  }\n\t\n}"}'
+            headers:
+              - name: User-Agent
+                value: insomnia/11.3.0
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{user_token}}"
+              disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Users
+        meta:
+          id: fld_e0990fd7a35742389e9928b01c8bd76b
+          created: 1753181790997
+          modified: 1753181793741
+          sortKey: -1753181790997
+          description: ""
+        children:
+          - url: "{{graphql_url}}"
+            name: Current User
+            meta:
+              id: req_795e6eb2ab7e45acb85b0302505924b3
+              created: 1753181807509
+              modified: 1753182730742
+              isPrivate: false
+              description: ""
+              sortKey: -1753181811655
+            method: POST
+            body:
+              mimeType: application/graphql
+              text: '{"query":"{\n  me
+                {\n    id\n\t\tusername\n\t\tcreated_at\n\t\tupdated_at\n\t\tnotes
+                {\n\t\t\tid\n\t\t\ttitle\n\t\t\tbody\n\t\t\tupdated_at\n\t\t\tcreated_at\n\t\t}\n  }\n}"}'
+            headers:
+              - name: User-Agent
+                value: insomnia/11.3.0
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{user_token}}"
+              disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+  - name: REST
+    meta:
+      id: fld_d198052bc92746fc93992e7af7886e48
+      created: 1753030242887
+      modified: 1753030242887
+      sortKey: -1753030242887
+      description: ""
+    children:
+      - name: Auth
+        meta:
+          id: fld_f114d4319d094af9bd04cba6a8d1a3db
+          created: 1753182382022
+          modified: 1753182552531
+          sortKey: -1753182393527
+          description: ""
+        children:
+          - url: "{{base_url}}/api/register"
+            name: Register
+            meta:
+              id: req_631d3bd2732f4caf8177b7594202ca44
+              created: 1753016169988
+              modified: 1753184890383
+              isPrivate: false
+              description: ""
+              sortKey: -1753182384025
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"username": "username",
+                	"password": "password",
+                	"password_confirmation": "password"
+                }
+            parameters:
+              - id: pair_01bb5462053b4b2484896d7ebe63dcd7
+                name: ""
+                value: ""
+                description: ""
+                disabled: false
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: Accept
+                value: application/json
+                id: pair_355508dad11042dab62815ff91ccac3f
+                disabled: false
+            authentication:
+              type: bearer
+              disabled: true
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: false
+                store: false
+              rebuildPath: true
+          - url: "{{base_url}}/api/login"
+            name: Login
+            meta:
+              id: req_6e145b9dbf754b6384391515b192b77b
+              created: 1753017065118
+              modified: 1753184898364
+              isPrivate: false
+              description: ""
+              sortKey: -1753182383925
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"username": "username",
+                	"password": "password"
+                }
+            parameters:
+              - id: pair_01bb5462053b4b2484896d7ebe63dcd7
+                name: ""
+                value: ""
+                description: ""
+                disabled: false
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: Accept
+                value: application/json
+                id: pair_355508dad11042dab62815ff91ccac3f
+                disabled: false
+            authentication:
+              type: none
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: false
+                store: false
+              rebuildPath: true
+      - name: Notes
+        meta:
+          id: fld_1c3c35568f054b85bbc932e83d4f4072
+          created: 1753182393427
+          modified: 1753182393427
+          sortKey: -1753182393427
+          description: ""
+        children:
+          - url: "{{base_url}}/api/notes"
+            name: Create Note
+            meta:
+              id: req_d2ee661363a74750b0c8c9df56ab93d7
+              created: 1753017177463
+              modified: 1753182410033
+              isPrivate: false
+              description: ""
+              sortKey: -1753182407878
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"title": "Note Title",
+                	"body": "Note Body"
+                }
+            parameters:
+              - id: pair_01bb5462053b4b2484896d7ebe63dcd7
+                name: ""
+                value: ""
+                description: ""
+                disabled: false
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: Accept
+                value: application/json
+                id: pair_355508dad11042dab62815ff91ccac3f
+                disabled: false
+            authentication:
+              type: bearer
+              token: "{{user_token}}"
+              disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: false
+                store: false
+              rebuildPath: true
+          - url: "{{base_url}}/api/notes/1"
+            name: Update Note
+            meta:
+              id: req_d84dc4a51da94644b35d6208305020f2
+              created: 1753017357319
+              modified: 1753184914787
+              isPrivate: false
+              description: ""
+              sortKey: -1753182407853
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"title": "Note Title Updated",
+                	"body": "Note Body Updated"
+                }
+            parameters:
+              - id: pair_01bb5462053b4b2484896d7ebe63dcd7
+                name: ""
+                value: ""
+                description: ""
+                disabled: false
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: Accept
+                value: application/json
+                id: pair_355508dad11042dab62815ff91ccac3f
+                disabled: false
+            authentication:
+              type: bearer
+              token: "{{user_token}}"
+              disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: false
+                store: false
+              rebuildPath: true
+          - url: "{{base_url}}/api/notes/1"
+            name: Delete Note
+            meta:
+              id: req_5dcce368dbb9458fac08e1c1bee3c5c0
+              created: 1753017716826
+              modified: 1753184911393
+              isPrivate: false
+              description: ""
+              sortKey: -1753182407828
+            method: DELETE
+            body:
+              mimeType: application/json
+              text: ""
+            parameters:
+              - id: pair_01bb5462053b4b2484896d7ebe63dcd7
+                name: ""
+                value: ""
+                description: ""
+                disabled: false
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: Accept
+                value: application/json
+                id: pair_355508dad11042dab62815ff91ccac3f
+                disabled: false
+            authentication:
+              type: bearer
+              token: "{{user_token}}"
+              disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: false
+                store: false
+              rebuildPath: true
+          - url: "{{base_url}}/api/notes"
+            name: List My Notes
+            meta:
+              id: req_e453851101794292a4b3b8748258bb63
+              created: 1753020223879
+              modified: 1753182408020
+              isPrivate: false
+              description: ""
+              sortKey: -1753182407978
+            method: GET
+            parameters:
+              - id: pair_01bb5462053b4b2484896d7ebe63dcd7
+                name: ""
+                value: ""
+                description: ""
+                disabled: false
+            headers:
+              - name: Accept
+                value: application/json
+                id: pair_355508dad11042dab62815ff91ccac3f
+                disabled: false
+            authentication:
+              type: bearer
+              token: "{{user_token}}"
+              disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: false
+                store: false
+              rebuildPath: true
+          - url: "{{base_url}}/api/notes/1"
+            name: View Note
+            meta:
+              id: req_c0720a5d16d143778b90637e33e4d904
+              created: 1753183104241
+              modified: 1753184919218
+              isPrivate: false
+              description: ""
+              sortKey: -1753182407928
+            method: GET
+            parameters:
+              - id: pair_01bb5462053b4b2484896d7ebe63dcd7
+                name: ""
+                value: ""
+                description: ""
+                disabled: false
+            headers:
+              - name: Accept
+                value: application/json
+                id: pair_355508dad11042dab62815ff91ccac3f
+                disabled: false
+            authentication:
+              type: bearer
+              token: "{{user_token}}"
+              disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: false
+                store: false
+              rebuildPath: true
+      - name: Users
+        meta:
+          id: fld_1cf943bc1f604f58b1f7e63cc1a52c5f
+          created: 1753182547499
+          modified: 1753182547499
+          sortKey: -1753182547499
+          description: ""
+        children:
+          - url: "{{base_url}}/api/me"
+            name: Current User
+            meta:
+              id: req_e3deecb24374438597c5bc086e3ccb5e
+              created: 1753182558447
+              modified: 1753182722502
+              isPrivate: false
+              description: ""
+              sortKey: -1753182562486
+            method: GET
+            body:
+              mimeType: application/json
+              text: ""
+            parameters:
+              - id: pair_01bb5462053b4b2484896d7ebe63dcd7
+                name: ""
+                value: ""
+                description: ""
+                disabled: false
+            headers:
+              - name: Content-Type
+                value: application/json
+              - name: Accept
+                value: application/json
+                id: pair_355508dad11042dab62815ff91ccac3f
+                disabled: false
+            authentication:
+              type: bearer
+              token: "{{user_token}}"
+              disabled: false
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: false
+                store: false
+              rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_7e6ff6e779bf409bb58db2bfbc693059
+    created: 1753016031986
+    modified: 1753016520477
+  cookies:
+    - key: XSRF-TOKEN
+      value: eyJpdiI6IlAvVEtvai93V1lMUUtNdmlqUU9HYmc9PSIsInZhbHVlIjoiTCswUGl3SUdKZUFzbUdQQ0xZb3Y2M0NuWDRqR3JPODFvdWZZOU5xYk9sSnRNSzhBTmd4eFVjSGlCRE9ZVS9SVUxrOUcrUVlOcjloc2QxNUJSeXJmZWl4QnYxT3ZBblNlSU0xZ1hkODFmNlJVMzZEZ1dqL0RYeGwzZ0M4aDAvREkiLCJtYWMiOiI5ODk2YzFhYzMyZjAyYjRmNjkwYmI4Yzk5ZWZlZmU0NDhmOWFmY2ViZDRkMmQyZGM2NjZhMTVmNzcyZjM5ZjkyIiwidGFnIjoiIn0%3D
+      maxAge: 7200
+      domain: localhost
+      path: /
+      hostOnly: false
+      creation: 2025-07-20T13:00:33.880Z
+      lastAccessed: 2025-07-20T13:02:00.477Z
+      sameSite: lax
+      id: 1a0906a4-9e33-4161-b8c4-3ead492a5713
+    - key: notes_a_p_i_session
+      value: eyJpdiI6IkFwL2NQd0VxcjNSSGt2TGV0eHQ2eUE9PSIsInZhbHVlIjoiQjVvVU80c3BVaSt1MkxOSWRCNUpqKzVLQlNHcFpJTjI5cit2cUhCNDdJOUNVN1I0Y2VLdW42b2pDdDFJdVRqYW9jUTB5K2dIanpGeWxRemF0Mk10UVMycjBrT044K3lHMGVrVitBY1k2VjIyZDdXemxXWWJwdVo2dlNtVHlEdnAiLCJtYWMiOiI4N2JhNTFjMDhmZmY2N2VmODNiZjYzODYxNWVmZDhhNWE5NzJiNzM4MDE5Zjc5OGY3MDI0ZmY3YjZlZWYzNGZiIiwidGFnIjoiIn0%3D
+      maxAge: 7200
+      domain: localhost
+      path: /
+      httpOnly: true
+      hostOnly: false
+      creation: 2025-07-20T13:00:33.880Z
+      lastAccessed: 2025-07-20T13:02:00.477Z
+      sameSite: lax
+      id: f52b52cd-2e5c-4cf3-9536-c1e3c736be9c
+environments:
+  name: Base Environment
+  meta:
+    id: env_5068c5091c86426397dea32b1e0dff6d
+    created: 1753016031985
+    modified: 1753016181250
+    isPrivate: false
+  subEnvironments:
+    - name: Local
+      meta:
+        id: env_4d55cd2f86dc4a7a93541984124ec4df
+        created: 1753016184792
+        modified: 1753185495293
+        isPrivate: false
+        sortKey: 1753016184792
+      data:
+        base_url: http://localhost:8001
+        graphql_url: http://localhost:8001/graphql
+        user_token: ""
+      color: "#66ff00"
