@@ -27,7 +27,7 @@ collection:
             meta:
               id: req_044aaa5286d94da6a55ab84e796eded2
               created: 1753039471565
-              modified: 1753181452584
+              modified: 1753186105140
               isPrivate: false
               description: ""
               sortKey: -1753181450196
@@ -35,7 +35,7 @@ collection:
             body:
               mimeType: application/graphql
               text: '{"query":"mutation {\n\tregister (\n\t\tusername:
-                \"hashem7\",\n\t\tpassword:
+                \"username\",\n\t\tpassword:
                 \"12345678\",\n\t\tpassword_confirmation:
                 \"12345678\"\n\t)\n\t{\n\t\ttoken\n\t\tuser
                 {\n\t\t\tid\n\t\t\tusername\n\t\t\tcreated_at\n\t\t}\n\t}\n}"}'
@@ -45,9 +45,7 @@ collection:
               - name: Content-Type
                 value: application/json
             authentication:
-              type: bearer
-              token: "{{user_token}}"
-              disabled: false
+              type: none
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -61,14 +59,15 @@ collection:
             meta:
               id: req_e2d3e1a45db2481eb659ef4d0b5cd78d
               created: 1753039477693
-              modified: 1753181451134
+              modified: 1753186133522
               isPrivate: false
               description: ""
               sortKey: -1753181450096
             method: POST
             body:
               mimeType: application/graphql
-              text: '{"query":"mutation {\n\tlogin(\n\t\tusername: \"hashem\",\n\t\tpassword:
+              text: '{"query":"mutation {\n\tlogin(\n\t\tusername:
+                \"username\",\n\t\tpassword:
                 \"12345678\"\n\t)\n\t{\n\t\ttoken\n\t\tuser
                 {\n\t\t\tid\n\t\t\tusername\n\t\t}\n\t}\n}"}'
             headers:
@@ -77,9 +76,7 @@ collection:
               - name: Content-Type
                 value: application/json
             authentication:
-              type: bearer
-              token: "{{user_token}}"
-              disabled: false
+              type: none
             settings:
               renderRequestBody: true
               encodeUrl: true
@@ -316,7 +313,7 @@ collection:
             meta:
               id: req_631d3bd2732f4caf8177b7594202ca44
               created: 1753016169988
-              modified: 1753184890383
+              modified: 1753186085160
               isPrivate: false
               description: ""
               sortKey: -1753182384025
@@ -325,7 +322,7 @@ collection:
               mimeType: application/json
               text: |-
                 {
-                	"username": "username",
+                	"username": "username1",
                 	"password": "password",
                 	"password_confirmation": "password"
                 }
@@ -343,8 +340,7 @@ collection:
                 id: pair_355508dad11042dab62815ff91ccac3f
                 disabled: false
             authentication:
-              type: bearer
-              disabled: true
+              type: none
             settings:
               renderRequestBody: true
               encodeUrl: true
