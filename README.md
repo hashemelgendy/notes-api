@@ -18,7 +18,7 @@ A simple Laravel-based RESTful & GraphQL APIs for managing notes. Built with Doc
 
 **MacOS**
 ```bash
-./setup.sh
+bin/setup
 ```
 
 **Linux**
@@ -28,7 +28,7 @@ make setup
 
 **Windows**
 ```bat
-setup.bat
+bin\setup.bat
 ```
 
 This will:
