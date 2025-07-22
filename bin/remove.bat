@@ -1,0 +1,3 @@
+@echo off
+echo Removing containers, networks, volumes...
+docker compose down -v
