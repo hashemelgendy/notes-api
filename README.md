@@ -8,7 +8,7 @@ A simple Laravel-based RESTful API for managing notes. Built with Docker and Mak
 
 1. Clone the repo  
     ```bash
-    git@github.com:hashemelgendy/notes-api.git
+    git clone git@github.com:hashemelgendy/notes-api.git
     ```  
 3. Run (First time only):
 
