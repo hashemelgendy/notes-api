@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 
 class NoteController extends ApiController
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Note::class);
+    }
     /**
      * List Notes
      *
@@ -22,6 +26,11 @@ class NoteController extends ApiController
         $notes = $request->user()->notes()->latest()->get();
 
         return $this->success(['notes' => $notes]);
+    }
+
+    public function show(Request $request, Note $note): JsonResponse
+    {
+        return $this->success(['note' => $note]);
     }
 
     /**
@@ -48,8 +57,6 @@ class NoteController extends ApiController
      */
     public function update(UpdateNoteRequest $request, Note $note): JsonResponse
     {
-        $this->authorize($note);
-
         $note->update($request->validated());
 
         return $this->success(['note' => $note]);
@@ -65,8 +72,6 @@ class NoteController extends ApiController
      */
     public function destroy(Request $request, Note $note): JsonResponse
     {
-        $this->authorize($note);
-
         $note->delete();
 
         return $this->success(['message' => 'Note deleted']);
