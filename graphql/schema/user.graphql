@@ -7,6 +7,5 @@ type User {
 }
 
 extend type Query {
-    user(id: ID, username: String): User @find
-    users(username: String): [User!]! @paginate(defaultCount: 10)
+    me: User @auth
 }
