@@ -14,7 +14,7 @@ A simple Laravel-based RESTful & GraphQL APIs for managing notes. Built with Doc
     ```bash
     git clone git@github.com:hashemelgendy/notes-api.git
     ```  
-2. Run the setup from your terminal/cmd (first time only):
+2. Run the setup from the project's root path/directory on your terminal/cmd (first time only):
 
 **MacOS**
 ```bash
