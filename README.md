@@ -45,13 +45,13 @@ After the initial setup, only run **up** command to start the containers and **d
 
 ## 🛠 MacOS Commands
 
-| Command         | Description                                     |
-|-----------------|-------------------------------------------------|
-| `./setup.sh`    | Build/start containers, Initial Setup           |
-| `./up.sh`       | Start up the project                            |
-| `./down.sh`     | Stop containers and network                     |
-| `./remove.sh`   | Stop and delete containers, volumes and network |
-| `./fresh.sh`    | Reset DB and reseed (`migrate:fresh --seed`)    |
+| Command      | Description                                     |
+|--------------|-------------------------------------------------|
+| `bin/setup`  | Build/start containers, Initial Setup           |
+| `bin/up`     | Start up the project                            |
+| `bin/down`   | Stop containers and network                     |
+| `bin/remove` | Stop and delete containers, volumes and network |
+| `bin/fresh`  | Reset DB and reseed (`migrate:fresh --seed`)    |
 
 ---
 
@@ -69,13 +69,13 @@ After the initial setup, only run **up** command to start the containers and **d
 
 ## 🛠 Windows Commands
 
-| Command         | Description                                     |
-|-----------------|-------------------------------------------------|
-| `setup.bat`     | Build/start containers, Initial Setup           |
-| `up.bat`        | Start up the project                            |
-| `down.bat`      | Stop containers and network                     |
-| `remove.bat`    | Stop and delete containers, volumes and network |
-| `fresh.bat`     | Reset DB and reseed (`migrate:fresh --seed`)    |
+| Command          | Description                                     |
+|------------------|-------------------------------------------------|
+| `bin\setup.bat`  | Build/start containers, Initial Setup           |
+| `bin\up.bat`     | Start up the project                            |
+| `bin\down.bat`   | Stop containers and network                     |
+| `bin\remove.bat` | Stop and delete containers, volumes and network |
+| `bin\fresh.bat`  | Reset DB and reseed (`migrate:fresh --seed`)    |
 
 ---
 
