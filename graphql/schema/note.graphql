@@ -12,9 +12,6 @@ extend type Query {
     @guard
     @field(resolver: "App\\GraphQL\\Queries\\NoteQuery@getMyNotes")
 
-    notes: [Note!]!
-    @all
-
     note(id: ID! @whereKey): Note
     @guard
     @can(ability:"view", find: "id")
