@@ -1,8 +1,9 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "hashemelgendy/notes-api",
+    "description": "REST and GraphQL backend for managing notes.",
+    "version": "0.1.0",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
