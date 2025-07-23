@@ -43,7 +43,7 @@ After the initial setup, only run **up** command to start the containers and **d
 
 ---
 
-## 🛠 MacOS Commands
+## 🛠 MacOS/Linux Commands
 
 | Command      | Description                                     |
 |--------------|-------------------------------------------------|
@@ -55,7 +55,7 @@ After the initial setup, only run **up** command to start the containers and **d
 
 ---
 
-## 🛠 Linux Commands
+## 🛠 Linux Commands (Make)
 
 | Command        | Description                                     |
 |----------------|-------------------------------------------------|
