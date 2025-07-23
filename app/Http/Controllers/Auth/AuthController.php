@@ -26,7 +26,7 @@ class AuthController extends ApiController
     {
         $data = $request->validated();
 
-        return $this->success($this->authService->login($data['username'], $data['password']), 201);
+        return $this->success($this->authService->login($data['username'], $data['password']));
     }
 
     /**
