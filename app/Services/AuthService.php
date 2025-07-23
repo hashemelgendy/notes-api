@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthService
 {
+    /**
+     * Register
+     *
+     * @param string $username
+     * @param string $password
+     * @return array
+     */
     public function register(string $username, string $password): array
     {
         $user = User::create([
@@ -21,6 +28,13 @@ class AuthService
         ];
     }
 
+    /**
+     * Login
+     *
+     * @param string $username
+     * @param string $password
+     * @return array
+     */
     public function login(string $username, string $password): array
     {
         $user = User::where('username', $username)->first();
