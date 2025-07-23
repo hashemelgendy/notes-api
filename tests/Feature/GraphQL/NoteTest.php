@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\User;
 use App\Models\Note;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
@@ -41,7 +41,7 @@ it('creates a note via GraphQL', function () {
     GRAPHQL;
 
     $response = $this->postJson('/graphql', ['query' => $mutation], [
-        'Authorization' => 'Bearer ' . $this->token,
+        'Authorization' => 'Bearer '.$this->token,
     ]);
 
     $response->assertStatus(200)
@@ -69,13 +69,12 @@ it('lists notes for authenticated user via GraphQL', function () {
     GRAPHQL;
 
     $response = $this->postJson('/graphql', ['query' => $query], [
-        'Authorization' => 'Bearer ' . $this->token,
+        'Authorization' => 'Bearer '.$this->token,
     ]);
 
     $response->assertStatus(200);
     expect(count($response->json('data.myNotes')))->toBe(3);
 });
-
 
 it('updates own note via GraphQL', function () {
     $note = Note::factory()->create(['user_id' => $this->user->id]);
@@ -96,14 +95,13 @@ it('updates own note via GraphQL', function () {
     $response = $this->postJson('/graphql', [
         'query' => $mutation,
     ], [
-        'Authorization' => 'Bearer ' . $this->token,
+        'Authorization' => 'Bearer '.$this->token,
     ]);
 
     $response->assertStatus(200)
         ->assertJsonPath('data.updateNote.title', 'GraphQL Note')
         ->assertJsonPath('data.updateNote.body', 'GraphQL Body');
 });
-
 
 it('does not update others\' notes via GraphQL', function () {
     $note = Note::factory()->create();
@@ -121,7 +119,7 @@ it('does not update others\' notes via GraphQL', function () {
     GRAPHQL;
 
     $response = $this->postJson('/graphql', ['query' => $mutation], [
-        'Authorization' => 'Bearer ' . $this->token,
+        'Authorization' => 'Bearer '.$this->token,
     ]);
 
     $response->assertStatus(200)
@@ -140,7 +138,7 @@ it('deletes own note via GraphQL', function () {
     GRAPHQL;
 
     $response = $this->postJson('/graphql', ['query' => $mutation], [
-        'Authorization' => 'Bearer ' . $this->token,
+        'Authorization' => 'Bearer '.$this->token,
     ]);
 
     $response->assertStatus(200);
@@ -160,7 +158,7 @@ it('does not delete others\' notes via GraphQL', function () {
     GRAPHQL;
 
     $response = $this->postJson('/graphql', ['query' => $mutation], [
-        'Authorization' => 'Bearer ' . $this->token,
+        'Authorization' => 'Bearer '.$this->token,
     ]);
 
     $response->assertStatus(200)

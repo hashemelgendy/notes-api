@@ -16,8 +16,8 @@ it('registers a user successfully', function () {
             'status',
             'data' => [
                 'user' => ['id', 'username'],
-                'token'
-            ]
+                'token',
+            ],
         ]);
 });
 
@@ -63,8 +63,8 @@ it('logs in successfully with correct credentials', function () {
             'status',
             'data' => [
                 'user' => ['id', 'username'],
-                'token'
-            ]
+                'token',
+            ],
         ]);
 });
 

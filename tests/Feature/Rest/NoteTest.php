@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\User;
 use App\Models\Note;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
@@ -31,8 +31,8 @@ beforeEach(function () {
 it('creates a note', function () {
     $response = $this->postJson('/api/notes', [
         'title' => $this->defaultTitle,
-        'body' => $this->defaultBody
-    ], ['Authorization' => 'Bearer ' . $this->token]);
+        'body' => $this->defaultBody,
+    ], ['Authorization' => 'Bearer '.$this->token]);
 
     $response->assertCreated();
     $this->assertDatabaseHas('notes', [
@@ -47,7 +47,7 @@ it('lists notes for authenticated user', function () {
     Note::factory()->create(); // Note for another user
 
     $response = $this->getJson('/api/notes', [
-        'Authorization' => 'Bearer ' . $this->token,
+        'Authorization' => 'Bearer '.$this->token,
     ]);
 
     $response->assertOk();
@@ -61,7 +61,7 @@ it('updates own note', function () {
     $response = $this->putJson("/api/notes/{$note->id}", [
         'title' => $this->updatedTitle,
         'body' => $this->updatedBody,
-    ], ['Authorization' => 'Bearer ' . $this->token]);
+    ], ['Authorization' => 'Bearer '.$this->token]);
 
     $response->assertOk();
     $this->assertDatabaseHas('notes', [
@@ -77,7 +77,7 @@ it('does not update others\' notes', function () {
     $response = $this->putJson("/api/notes/{$otherNote->id}", [
         'title' => $this->hackedTitle,
         'body' => $this->hackedBody,
-    ], ['Authorization' => 'Bearer ' . $this->token]);
+    ], ['Authorization' => 'Bearer '.$this->token]);
 
     $response->assertStatus(403);
 });
@@ -86,7 +86,7 @@ it('deletes own note', function () {
     $note = Note::factory()->create(['user_id' => $this->user->id]);
 
     $response = $this->deleteJson("/api/notes/{$note->id}", [], [
-        'Authorization' => 'Bearer ' . $this->token,
+        'Authorization' => 'Bearer '.$this->token,
     ]);
 
     $response->assertOk();
@@ -97,7 +97,7 @@ it('does not delete others\' notes', function () {
     $otherNote = Note::factory()->create();
 
     $response = $this->deleteJson("/api/notes/{$otherNote->id}", [], [
-        'Authorization' => 'Bearer ' . $this->token,
+        'Authorization' => 'Bearer '.$this->token,
     ]);
 
     $response->assertStatus(403);
