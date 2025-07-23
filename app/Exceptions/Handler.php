@@ -17,7 +17,7 @@ class Handler
     public static function render(): Closure
     {
         return function (Throwable $e, Request $request): ?JsonResponse {
-            $previous = method_exists($e, 'getPrevious') ? $e->getPrevious() : null;
+            $previous = $e->getPrevious();
 
             return match (true) {
                 $previous instanceof ModelNotFoundException => self::handleModelNotFound($previous),
