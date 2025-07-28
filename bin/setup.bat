@@ -11,7 +11,7 @@ if errorlevel 1 (
 )
 
 echo Copying .env and generating app key...
-docker compose exec app cmd /c "copy .env.docker .env >nul 2>&1 || exit /b 0"
+docker compose exec app sh -c "cp -n .env.docker .env || true"
 
 echo Installing PHP dependencies...
 docker compose exec app composer install
